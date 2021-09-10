@@ -64,4 +64,5 @@ for gradcam, gradcam_pp in cams:
     images.extend([torch_img.cpu(), heatmap_pp, result_pp])
 
 grid_image = make_grid(images, nrow=1)
+grid_image = transforms.ToPILImage()(grid_image)
 grid_image.save(grid_cam_dir + '/' + img_name)

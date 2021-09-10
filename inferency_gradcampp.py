@@ -68,5 +68,5 @@ grid_image = transforms.ToPILImage()(grid_image)
 
 grid_image_path = os.path.join(grid_cam_dir, img_name)
 os.makedirs(os.path.dirname(grid_image_path), exist_ok=True)
-with open(grid_image_path, 'w') as f:
+with open(grid_image_path, 'wb') as f:
     grid_image.save(f)

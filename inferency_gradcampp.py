@@ -65,4 +65,8 @@ for gradcam, gradcam_pp in cams:
 
 grid_image = make_grid(images, nrow=1)
 grid_image = transforms.ToPILImage()(grid_image)
-grid_image.save(grid_cam_dir + '/' + img_name)
+
+grid_image_path = os.path.join(grid_cam_dir, img_name)
+os.makedirs(os.path.dirname(grid_image_path), exist_ok=True)
+with open(grid_image_path, 'w') as f:
+    grid_image.save(f)

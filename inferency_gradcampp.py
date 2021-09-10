@@ -12,6 +12,8 @@ from gradcam import GradCAM, GradCAMpp
 
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
+num_classes = 2
+
 img_dir = 'images'
 # img_name = 'collies.JPG'
 # img_name = 'multiple_dogs.jpg'
@@ -35,6 +37,8 @@ torch_img = transforms.Compose([
 normed_torch_img = transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])(torch_img)[None]
 
 densenet = models.densenet121(pretrained=True)
+num_ftrs = densenet.classifier.in_features
+densenet.classifier = torch.nn.Linear(num_ftrs, num_classes)
 densenet.load_state_dict(torch.load(weights_path))
 
 configs = [

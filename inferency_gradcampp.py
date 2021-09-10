@@ -16,11 +16,11 @@ img_dir = 'images'
 # img_name = 'collies.JPG'
 # img_name = 'multiple_dogs.jpg'
 # img_name = 'snake.JPEG'
-img_name = 'water-bird.JPEG'
+img_name = 'exp1/KO_NT/14A2.ome.tif'
 img_path = os.path.join(img_dir, img_name)
 
 weights_dir = 'weights'
-weights_name = 'XXXXX'
+weights_name = 'exp1-fold-6.pth'
 weights_path = os.path.join(weights_dir, weights_name)
 
 grid_cam_dir = 'cam_images'
@@ -59,5 +59,5 @@ for gradcam, gradcam_pp in cams:
 
     images.extend([torch_img.cpu(), heatmap_pp, result_pp])
 
-grid_image = make_grid(images, nrow=5)
+grid_image = make_grid(images, nrow=1)
 grid_image.save(grid_cam_dir + '/' + img_name)

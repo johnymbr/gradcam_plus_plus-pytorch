@@ -127,8 +127,10 @@ class GradCAMpp(GradCAM):
 
         logit = self.model_arch(input)
         if class_idx is None:
+            print('CLASS_IDX: ', logit.max(1)[-1])
             score = logit[:, logit.max(1)[-1]].squeeze()
         else:
+            print('CLASS_IDX: ', class_idx)
             score = logit[:, class_idx].squeeze()
 
         self.model_arch.zero_grad()
